@@ -1,0 +1,36 @@
+{
+  "name": "my-chemical-playbook",
+  "version": "1.0.0",
+  "description": "Página educativa para la recopilación y publicación de típicos experimentos de química.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/encordo/my-chemical-playbook.git"
+  },
+  "keywords": [],
+  "author": "encordo",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/encordo/my-chemical-playbook/issues"
+  },
+  "homepage": "https://github.com/encordo/my-chemical-playbook#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "ejs": "^7.0.2",
+    "express": "^5.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "jtest": "^0.0.1",
+    "nodemon": "^3.1.14"
+  }
+}

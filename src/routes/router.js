@@ -6,10 +6,10 @@ import bugRouter from "./bug.routes.js";
 const router = Router();
 
 router.get("/health", (req, res) => {
-  res.json({ message: "Tutto bene" });
+  res.json({ message: "OK" });
 });
 
 router.use("/auth", authRouter);
-router.use("/bugs", bugRouter);
+//router.use("/bugs", bugRouter);
 
 export default router;

@@ -35,4 +35,4 @@ const getUserById = async (id) => {
   return UserModel.findById(id);
 };
 
-export { createUser, getUserByEmail, getUserById };
+export { createUser, getUserByUsername, getUserById };

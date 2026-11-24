@@ -40,7 +40,7 @@ const isAuthenticated = (req, res, next) => {
     const payload = jwt.verify(token, env.JWT_SECRET);
     req.user = {
       _id: payload._id,
-      role: payload.role,
+      admin: payload.admin,
       username: payload.username,
     };
     next();

@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { createUser, getUserByEmail } from "../repositories/auth.repository.js";
+import { createUser, getUserByUsername } from "../repositories/auth.repository.js";
 import jwt from "jsonwebtoken";
 import { HttpError } from "../utils/HttpError.js";
 import dotenv from "dotenv";
@@ -49,20 +49,20 @@ const register = async (req, res) => {
  *
  * @param {Object} req - body: email y password
  * @param {Object} res - 200 con { token, user } y la cookie "token"
- * @throws {HttpError} 400 si email o password no son texto (evita la inyección NoSQL)
+ * @throws {HttpError} 400 si username o password no son texto (evita la inyección NoSQL)
  * @throws {HttpError} 401 si el email no existe o la contraseña no coincide (mismo mensaje en los dos casos)
  */
 const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
-  // Si no son texto, alguien podría enviar { "email": { "$ne": null } } (inyección NoSQL)
-  if (typeof email !== "string" || typeof password !== "string") {
-    throw new HttpError(400, "El email y la contraseña son obligatorios");
+  // Si no son texto, alguien podría enviar { "username": { "$ne": null } } (inyección NoSQL)
+  if (typeof username !== "string" || typeof password !== "string") {
+    throw new HttpError(400, "El username y la contraseña son obligatorios");
   }
 
-  const user = await getUserByEmail(email);
+  const user = await getUserByUsername(username);
   // Mismo mensaje si no existe el email o si la contraseña falla: no damos pistas
-  if (!user || !(await bcrypt.compare(password, user.password))) {
+  if (!user || !(await bcrypt.compare(username, user.username))) {
     throw new HttpError(401, "Credenciales incorrectas");
   }
 

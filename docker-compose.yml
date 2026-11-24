@@ -1,28 +1,33 @@
 services:
+
   app:
     container_name: ${APP_HOST}
     build: .
     restart: unless-stopped
     ports:
       - "${APP_PORT}:3000"
+    env_file:
+      - .env
     volumes:
       - .:/app
       - /app/node_modules
     depends_on:
       mongo:
-        condition: service healthy #No arranca la API hasta que Mongo responda
+        condition: service_healthy # no arranca la API hasta que Mongo responde
 
   mongo:
-    container_name: servidor-mongo
+    # La API se conecta a Mongo por este nombre (MONGO_HOST)
+    container_name: ${MONGO_HOST}
     image: mongo:8
     restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
-      MONGO_INITDB_DATABASE: $F{MONGO_DB}
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
     ports:
       - "${MONGO_PORT}:27017"
     volumes:
+      # Los scripts .js de esta carpeta se ejecutan solo la primera vez (con el volumen vacío)
       - ./database/scripts:/docker-entrypoint-initdb.d:ro
       - mongo_data:/data/db
     healthcheck:
@@ -31,19 +36,21 @@ services:
       timeout: 5s
       retries: 10
 
-# mongo-express:
-#   container_name: gestor-mongo-express
-#   image: mongo-express
-#   restart: unless-stopped
-#   environment:
-#     ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_EXPRESS_USER}
-#     ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_EXPRESS_PASSWORD}
-#     ME_CONFIG_MONGODB_SERVER: ${MONGO_HOST}
-#     ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_EXPRESS_USER}
-#     ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_EXPRESS_PASSWORD}
-#   ports:
-#     - "${MONGO_EXPRESS_PORT}:8081"
-#   depends_on:
-#     - mongo
-#   volumes:
-#     mongo_data:
+  # mongo-express:
+  #   container_name: ${MONGO_EXPRESS_HOST}
+  #   image: mongo-express
+  #   restart: unless-stopped
+  #   environment:
+  #     ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USER}
+  #     ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD}
+  #     ME_CONFIG_MONGODB_SERVER: ${MONGO_HOST}
+  #     ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_EXPRESS_USER}
+  #     ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_EXPRESS_PASSWORD}
+  #   ports:
+  #     - "${MONGO_EXPRESS_PORT}:8081"
+  #   depends_on:
+  #     mongo:
+  #       condition: service_healthy
+
+volumes:
+  mongo_data:

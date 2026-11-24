@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { createUser, getUserByUsername } from "../repositories/auth.repository.js";
+import { createUser, getUserByUsername } from "../repositories/user.repository.js";
 import jwt from "jsonwebtoken";
 import { HttpError } from "../utils/HttpError.js";
 import dotenv from "dotenv";

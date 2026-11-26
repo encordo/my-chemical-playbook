@@ -1,19 +1,20 @@
  // Base de datos inicial.
 // Se crea con 2 usuarios (1 administrador y un usuario)
+// En ambas la contraseña es "reactivo".
 
 db.users.insertMany(
     [{
         "_id": ObjectId("6b05840036626f6c9887fc54"),
         "username": "admin",
         "email": "admin@my-chemical-playbook.com",
-        "password": "$2a$10$zySATX6EVjoVvNl30uTkK.euha3PBmqqW8edDA.QdzFm2zgl3hRwG",
+        "password": "$2b$10$FWmqKI.SKYcp0P0dv/zAiO4.j/bmeh/qrIWeYxvTjasn8kDQKjs8u",
         "admin": true
     },
     {
         "_id": ObjectId("6b05850236626f6c9887fc55"),
         "username": "eneko",
         "email": "ecg@fakemail.com",
-        "password": "$2a$10$9uegu1X4TawMtTAC2WvnOOUdjpRibZSeGOp8cTazwrvN2v9uba/mG",
+        "password": "$2b$10$FWmqKI.SKYcp0P0dv/zAiO4.j/bmeh/qrIWeYxvTjasn8kDQKjs8u",
         "admin": false
     }]
 );

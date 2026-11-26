@@ -4,10 +4,11 @@
   "description": "Página educativa para la recopilación y publicación de típicos experimentos de química.",
   "main": "index.js",
   "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest",
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "repository": {
     "type": "git",
@@ -31,8 +32,7 @@
     "mongoose": "^9.13.0"
   },
   "devDependencies": {
-    "jtest": "^0.0.1",
     "nodemon": "^3.1.14",
-    "vitest": "^3.2.4"
+    "vitest": "^5.1.2"
   }
 }

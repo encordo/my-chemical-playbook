@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import { createUser, getUserByUsername } from "../repositories/user.repository.js";
 import jwt from "jsonwebtoken";
 import { HttpError } from "../utils/HttpError.js";
+import { env } from "../config/env.js";
 import dotenv from "dotenv";
 
 // Opciones de la cookie del token (las mismas al crearla y al borrarla)

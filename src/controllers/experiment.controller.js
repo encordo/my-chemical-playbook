@@ -10,7 +10,7 @@ import { isAdmin } from "../utils/permissions.js";
 import { HttpError } from "../utils/HttpError.js";
 
 // Los campos que el usuario puede escribir.
-const EDITABLE_FIELDS = ["title", "description","instructions","chemical_products","instruments"];
+const EDITABLE_FIELDS = ["title", "description","instructions"];
 
 /**
  * Lista los experimentos. GET /api/experiments
@@ -75,14 +75,11 @@ const update = async (req, res) => {
     if (!experiment) {
         throw new HttpError(404, "Ese experimento no existe");
     }
-    if (!isAdmin(req.user)) {
-        throw new HttpError(403, "Solo un admin pueden editar este experimento");
-    }
 
     // Solo cambiamos los campos permitidos que hayan llegado en el body
     for (const field of EDITABLE_FIELDS) {
         if (req.body[field] !== undefined) {
-            bug.set(field, req.body[field]);
+            experiment.set(field, req.body[field]);
         }
     }
 

@@ -10,8 +10,8 @@ const experimentRouter = Router();
 experimentRouter.get("/",experimentController.getAll);
 experimentRouter.get("/:id",experimentController.getById);
 experimentRouter.post("/",isAuthenticated, experimentController.create);
-experimentRouter.patch("/",isAuthenticated, experimentController.update);
-experimentRouter.delete("/",isAuthenticated, isAdmin, experimentController.remove);
+experimentRouter.patch("/:id",isAuthenticated, experimentController.update);
+experimentRouter.delete("/:id",isAuthenticated, isAdmin, experimentController.remove);
 
 //Productos químicos
 
@@ -21,6 +21,6 @@ experimentRouter.delete("/:id/chemicalProduct/:cProductId", isAuthenticated, isA
 //Instrumentos
 
 experimentRouter.post("/:id/instrument", isAuthenticated, instrumentController.create);
-experimentRouter.delete("/:id/instrument/:instrument", isAuthenticated, isAdmin, instrumentController.remove);
+experimentRouter.delete("/:id/instrument/:instrumentId", isAuthenticated, isAdmin, instrumentController.remove);
 
 export default experimentRouter;

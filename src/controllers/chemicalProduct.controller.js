@@ -19,7 +19,7 @@ const create = async (req, res) => {
   }
 
   const { name, formula, cas, ce, molecularWeight, quantity } = req.body;
-  experiment.chemicalProducts.push({
+  experiment.chemical_products.push({
     name,
     formula,
     cas,
@@ -28,7 +28,7 @@ const create = async (req, res) => {
     quantity
   });
 
-  const updatedExperiment = await saveExperiment(bug);
+  const updatedExperiment = await saveExperiment(experiment);
   res.status(201).json({ data: updatedExperiment });
 };
 
@@ -48,7 +48,7 @@ const remove = async (req, res) => {
   }
 
   // .id() es el método de Mongoose para buscar un subdocumento por su _id
-  const chemicalProduct = experiment.chemicalProducts.id(req.params.chemicalProductId);
+  const chemicalProduct = experiment.chemical_products.id(req.params.cProductId);
   if (!chemicalProduct) {
     throw new HttpError(404, "Ese producto químico no existe");
   }

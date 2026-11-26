@@ -6,12 +6,11 @@ import {
     saveExperiment,
     deleteExperiment
 } from "../repositories/experiment.repository.js";
-//import { isTechnology } from "../config/constants.js";
-//import { isOwnerOrAdmin } from "../utils/permissions.js";
+import { isAdmin } from "../utils/permissions.js";
 import { HttpError } from "../utils/HttpError.js";
 
-// Los campos que el usuario puede escribir. Nunca author ni solutions
-const EDITABLE_FIELDS = ["name", "errorMessage", "description", "code", "technologies", "dangerLevel"];
+// Los campos que el usuario puede escribir.
+const EDITABLE_FIELDS = ["title", "description","instructions","chemical_products","instruments"];
 
 /**
  * Lista los experimentos. GET /api/experiments
@@ -20,7 +19,7 @@ const EDITABLE_FIELDS = ["name", "errorMessage", "description", "code", "technol
  * @param {Object} res - 200 con la lista de experimentos, 
  */
 const getAll = async (req, res) => {
-    const experiments = await getExperiments(technology);
+    const experiments = await getExperiments();
     res.json({ data: experiments });
 };
 
@@ -48,7 +47,7 @@ const getById = async (req, res) => {
  * @param {Object} res - 201 con el experimento creado
  */
 const create = async (req, res) => {
-    // Cogemos SOLO los campos permitidos (si envían author o solutions, se ignoran)
+
     const { title, description, instructions } = req.body;
 
     const experiment = await createExperiment({
@@ -63,30 +62,29 @@ const create = async (req, res) => {
 };
 
 /**
- * Edita un bug: solo el autor o un admin. PATCH /api/bugs/:id
+ * Edita un experimento: solo los usuarios. PATCH /api/experiments/:id
  *
- * Cambia solo los campos de EDITABLE_FIELDS que lleguen en el body; author y solutions no se tocan.
  *
  * @param {Object} req - params.id y, en el body, los campos a cambiar
  * @param {Object} res - 200 con el bug actualizado
- * @throws {HttpError} 404 si el bug no existe
+ * @throws {HttpError} 404 si el experimento no existe
  * @throws {HttpError} 403 si el usuario no es el autor ni admin
  */
 const update = async (req, res) => {
-    const experiment = await getBugById(req.params.id);
+    const experiment = await getExperimentById(req.params.id);
     if (!experiment) {
         throw new HttpError(404, "Ese experimento no existe");
     }
-  /*   if (!isOwnerOrAdmin(req.user, bug.author)) {
-        throw new HttpError(403, "Solo el autor o un admin pueden editar este bug");
-    } */
+    if (!isAdmin(req.user)) {
+        throw new HttpError(403, "Solo un admin pueden editar este experimento");
+    }
 
     // Solo cambiamos los campos permitidos que hayan llegado en el body
-/*     for (const field of EDITABLE_FIELDS) {
+    for (const field of EDITABLE_FIELDS) {
         if (req.body[field] !== undefined) {
             bug.set(field, req.body[field]);
         }
-    } */
+    }
 
     const updatedExperiment = await saveExperiment(experiment); // save() ejecuta las validaciones del esquema
     res.json({ data: updatedExperiment });
@@ -100,13 +98,13 @@ const update = async (req, res) => {
  * @throws {HttpError} 404 si el experimento no existe
  */
 const remove = async (req, res) => {
-    const experiment = await getBugById(req.params.id);
+    const experiment = await getExperimentById(req.params.id);
     if (!experiment) {
         throw new HttpError(404, "Ese experimento no existe");
     }
-/*     if (!isOwnerOrAdmin(req.user, bug.author)) {
-        throw new HttpError(403, "Solo el autor o un admin pueden borrar este bug");
-    } */
+    if (!isAdmin(req.user)) {
+        throw new HttpError(403, "Solo un admin pueden elminar este experimento");
+    }
 
     await deleteExperiment(experiment);
     res.json({ message: "Experimento eliminado." });

@@ -1,7 +1,7 @@
 //import { Types } from "mongoose";
 import { getExperimentById, saveExperiment } from "../repositories/experiment.repository.js";
 
-//import { isOwnerOrAdmin } from "../utils/permissions.js";
+import { isAdmin } from "../utils/permissions.js";
 import { HttpError } from "../utils/HttpError.js";
 
 /**
@@ -19,7 +19,6 @@ const create = async (req, res) => {
   }
 
   const { name, formula, cas, ce, molecularWeight, quantity } = req.body;
-  // Cualquiera puede aportar una solución, también el autor del bug
   experiment.chemicalProducts.push({
     name,
     formula,
@@ -45,7 +44,7 @@ const create = async (req, res) => {
 const remove = async (req, res) => {
   const experiment = await getExperimentById(req.params.id);
   if (!experiment) {
-    throw new HttpError(404, "Ese bug no existe");
+    throw new HttpError(404, "Ese experimento no existe");
   }
 
   // .id() es el método de Mongoose para buscar un subdocumento por su _id
@@ -53,8 +52,10 @@ const remove = async (req, res) => {
   if (!chemicalProduct) {
     throw new HttpError(404, "Ese producto químico no existe");
   }
-
-  chemicalProduct.deleteOne(); // la quita del array; se guarda con saveBug
+  if (!isAdmin(req.user)) {
+    throw new HttpError(403, "Solo un admin pueden borrar este producto químico");
+  }
+  chemicalProduct.deleteOne(); // la quita del array; se guarda 
   const updatedExperiment = await saveExperiment(experiment);
   res.json({ data: updatedExperiment });
 };

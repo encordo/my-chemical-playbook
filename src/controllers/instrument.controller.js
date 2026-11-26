@@ -1,6 +1,6 @@
 //import { Types } from "mongoose";
 import { getExperimentById, saveExperiment } from "../repositories/experiment.repository.js";
-//import { isOwnerOrAdmin } from "../utils/permissions.js";
+import { isAdmin } from "../utils/permissions.js";
 import { HttpError } from "../utils/HttpError.js";
 
 /**
@@ -17,8 +17,7 @@ const create = async (req, res) => {
     throw new HttpError(404, "Ese experimento no existe");
   }
 
-  const { name, quantity} = req.body;
-  // Cualquiera puede aportar una solución, también el autor del bug
+  const { name, quantity } = req.body;
   experiment.instruments.push({
     name,
     quantity
@@ -29,7 +28,7 @@ const create = async (req, res) => {
 };
 
 /**
- * Borra un instrumento: solo su autor o un admin (no el autor del bug).
+ * Borra un instrumento: solo su autor o un admin.
  * DELETE /api/experiments/:id/instruments/:instrumentId
  *
  * @param {Object} req - 
@@ -47,7 +46,9 @@ const remove = async (req, res) => {
   if (!instrument) {
     throw new HttpError(404, "Ese instrumento no existe");
   }
-
+  if (!isAdmin(req.user)) {
+    throw new HttpError(403, "Solo un admin pueden eliminar este instrumento");
+  }
   instrument.deleteOne(); // la quita del array; se guarda con saveBug
   const updatedExperiment = await saveExperiment(experiment);
   res.json({ data: updatedExperiment });

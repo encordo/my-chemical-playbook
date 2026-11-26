@@ -1,9 +1,8 @@
 import bcrypt from "bcrypt";
-import { createUser, getUserByUsername } from "../repositories/user.repository.js";
+import { createUser, getUserByUsername,getUserById } from "../repositories/user.repository.js";
 import jwt from "jsonwebtoken";
 import { HttpError } from "../utils/HttpError.js";
 import { env } from "../config/env.js";
-import dotenv from "dotenv";
 
 // Opciones de la cookie del token (las mismas al crearla y al borrarla)
 const TOKEN_COOKIE_OPTIONS = {
@@ -34,8 +33,8 @@ const register = async (req, res) => {
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
-  // role: "user" siempre. Aunque alguien envíe "role": "admin" en el body, no lo usamos
-  const user = await createUser({ username, email, password: hashedPassword, role: "user" });
+  // No se crea admins
+  const user = await createUser({ username, email, password: hashedPassword, admin: false});
 
   res.status(201).json({ data: user }); // toJSON del modelo quita la contraseña
 };
@@ -63,13 +62,13 @@ const login = async (req, res) => {
 
   const user = await getUserByUsername(username);
   // Mismo mensaje si no existe el email o si la contraseña falla: no damos pistas
-  if (!user || !(await bcrypt.compare(username, user.username))) {
+  if (!user || !(await bcrypt.compare(password, user.password))) {
     throw new HttpError(401, "Credenciales incorrectas");
   }
 
   const payload = {
     _id: user._id.toString(),
-    role: user.role,
+    admin: user.admin,
     username: user.username,
   };
   const token = jwt.sign(payload, env.JWT_SECRET, { expiresIn: "24h" });

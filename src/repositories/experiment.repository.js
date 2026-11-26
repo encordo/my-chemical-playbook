@@ -8,7 +8,7 @@ import { ExperimentModel } from "../models/experiment.model.js";
  * @returns {Promise<Object[]>} La lista de experimentos (vacía si no hay ninguno)
  */
 const getExperiments = async () => {
-  return ExperimentModel.find(filter);
+  return ExperimentModel.find();
 };
 
 /**
@@ -17,9 +17,6 @@ const getExperiments = async () => {
  * @param {string} id - El _id del bug
  * @returns {Promise<Object|null>} El bug con author = { _id, username }, o null si no existe
  */
-/* const getBugByIdWithAuthor = async (id) => {
-  return BugModel.findById(id).populate("author", "username");
-}; */
 
 /**
  * Busca un experimento

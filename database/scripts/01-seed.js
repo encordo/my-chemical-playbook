@@ -757,3 +757,5 @@ db.experiments.insertMany(
         ]
     }]
 );
+
+print("✅ My Chemical Playbook: datos iniciales cargados (2 usuarios y 15 experimentos)");

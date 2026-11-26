@@ -22,7 +22,7 @@ const chemicalProductSchema = new Schema({
         required: true,
         trim: true
     },
-    molecularWeigh: {
+    molecularWeight: {
         type: Number,
         required: true,
         validate: {
@@ -39,8 +39,8 @@ const chemicalProductSchema = new Schema({
             message: 'La cantidad debe ser mayor que cero'
         }
     }
-
-});
+}
+,{ timestamps: true });
 
 const instrumentSchema = new Schema({
     name: {
@@ -57,8 +57,8 @@ const instrumentSchema = new Schema({
             message: 'La cantidad debe ser mayor que cero'
         }
     }
-}
-
+},
+{ timestamps: true }
 );
 
 const experimentSchema = new Schema({
@@ -84,6 +84,6 @@ const experimentSchema = new Schema({
         type: [instrumentSchema],
         default: []
     }
-});
+},{ timestamps: true });
 
 export const ExperimentModel = model("Experiment", experimentSchema);

@@ -18,14 +18,14 @@ const create = async (req, res) => {
     throw new HttpError(404, "Ese experimento no existe");
   }
 
-  const { name, formula, cas, ce, molecularWeigh, quantity } = req.body;
+  const { name, formula, cas, ce, molecularWeight, quantity } = req.body;
   // Cualquiera puede aportar una solución, también el autor del bug
   experiment.chemicalProducts.push({
     name,
     formula,
     cas,
     ce,
-    molecularWeigh,
+    molecularWeight,
     quantity
   });
 

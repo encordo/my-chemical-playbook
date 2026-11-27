@@ -66,7 +66,7 @@ const create = async (req, res) => {
  *
  *
  * @param {Object} req - params.id y, en el body, los campos a cambiar
- * @param {Object} res - 200 con el bug actualizado
+ * @param {Object} res - 200 con el experimento actualizado
  * @throws {HttpError} 404 si el experimento no existe
  * @throws {HttpError} 403 si el usuario no es el autor ni admin
  */
@@ -88,7 +88,7 @@ const update = async (req, res) => {
 };
 
 /**
- * Borra un bug y sus soluciones: solo el autor o un admin. DELETE /api/bugs/:id
+ * Borra un bug y sus soluciones: solo el autor o un admin. DELETE /api/experiments/:id
  *
  * @param {Object} req - params.id: el _id del experimento
  * @param {Object} res - 200 con un mensaje de confirmación

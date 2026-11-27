@@ -6,7 +6,7 @@ import { env } from "./env.js";
  *
  * encodeURIComponent: por si el usuario o la contraseña tienen caracteres especiales (@, :, /...).
  *
- * @returns {string} Por ejemplo: mongodb://user:1234@bugpedia-mongo:27017/bugpedia?authSource=admin
+ * @returns {string} Por ejemplo: mongodb://user:1234@bugpedia-mongo:27017/my-chemical-playbook?authSource=admin
  */
 const buildMongoUri = () => {
   const user = encodeURIComponent(env.MONGO_USER);

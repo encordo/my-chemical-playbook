@@ -18,7 +18,7 @@ const createUser = async (data) => {
  *
  * La contraseña tiene select: false en el esquema, así que hay que pedirla con "+password".
  *
- * @param {string} email - El email (se busca en minúsculas)
+ * @param {string} username - El username (se busca en minúsculas)
  * @returns {Promise<Object|null>} El usuario con su contraseña, o null si no existe
  */
 const getUserByUsername = async (username) => {

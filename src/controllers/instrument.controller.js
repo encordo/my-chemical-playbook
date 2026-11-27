@@ -49,7 +49,7 @@ const remove = async (req, res) => {
   if (!isAdmin(req.user)) {
     throw new HttpError(403, "Solo un admin pueden eliminar este instrumento");
   }
-  instrument.deleteOne(); // la quita del array; se guarda con saveBug
+  instrument.deleteOne(); // la quita del array; se guarda con saveExperiment
   const updatedExperiment = await saveExperiment(experiment);
   res.json({ data: updatedExperiment });
 };

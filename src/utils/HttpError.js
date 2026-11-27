@@ -5,7 +5,7 @@
  * y lo convierte en respuesta el errorHandler.
  *
  * @example
- * throw new HttpError(404, "Ese bug no existe");        // en un controlador
+ * throw new HttpError(404, "Ese experimento no existe");        // en un controlador
  * return next(new HttpError(401, "No hay token"));      // en un middleware
  */
 export class HttpError extends Error {

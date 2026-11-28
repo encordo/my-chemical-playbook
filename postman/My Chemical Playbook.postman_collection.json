@@ -1,0 +1,572 @@
+{
+	"info": {
+		"_postman_id": "e7ca0887-d4a1-494b-b378-df7717bee0e7",
+		"name": "My Chemical Playbook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "60392614",
+		"_collection_link": "https://encordo-1927839.postman.co/workspace/Eneko-C%C3%B3rdoba's-Workspace~580ecfd2-5a4c-4892-8c44-9848ef097311/collection/60392614-e7ca0887-d4a1-494b-b378-df7717bee0e7?action=share&source=collection_link&creator=60392614"
+	},
+	"item": [
+		{
+			"name": "Mostrar todos los experimentos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/experiment/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"experiment",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mostrar un experimento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/experiment/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"experiment",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6b08244aa2cb6f71ea5f5c96"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"aitor\",\n    \"email\":\"aitor@mcp.org\",\n    \"password\":\"reactivo\",\n    \"passwordRepeat\":\"reactivo\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"reactivo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/login/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Me",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/auth/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/auth/logout/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"logout",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Experimento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"Un experimento muy estúpido\",\n    \"description\": \"Vamos a ver que pasa si mezclamos lejía con sosa\",\n    \"instructions\": \"1. Pon la cubeta en el suelo.\\n2. Vacía la botella de lejía en la cubeta.\\n3. Vacía la bolsa de sosa en la cubeta.\\n 4. Disfruta el espectáculo.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/experiment/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"experiment",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear e insertar producto químico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Sosa (Hirdróxido de Sodio)\",\n    \"formula\":\"NaOH\",\n    \"cas\": \"1310-73-2\",\n    \"ce\": \"215-185-5\",\n    \"molecularWeight\":\"39.997\",\n    \"quantity\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/experiment/:id/chemicalProduct",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"experiment",
+						":id",
+						"chemicalProduct"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6b08244aa2cb6f71ea5f5c96"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear e insertar instrumento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Cubeta de 10 litros\",\n    \"quantity\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/experiment/:id/instrument",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"experiment",
+						":id",
+						"instrument"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6b08244aa2cb6f71ea5f5c96"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar experimento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"instructions\": \"1. Pon la cubeta en el suelo.\\n2. Vacía la botella de lejía en la cubeta.\\n3. Vacía la bolsa de sosa en la cubeta.\\n 4. Disfruta el espectáculo.\\n 5. Ahora llama al 112 ¡Capullo!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/experiment/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"experiment",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6b08244aa2cb6f71ea5f5c96"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar producto químico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/experiment/:id/chemicalProduct/:cProductId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"experiment",
+						":id",
+						"chemicalProduct",
+						":cProductId"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6b08244aa2cb6f71ea5f5c96"
+						},
+						{
+							"key": "cProductId",
+							"value": "6b08286513cc6f2df4b50152"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar instrumento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/experiment/:id/instrument/:instrumentId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"experiment",
+						":id",
+						"instrument",
+						":instrumentId"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6b08244aa2cb6f71ea5f5c96"
+						},
+						{
+							"key": "instrumentId",
+							"value": "6b082957941f46ecbd0c7c6d"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar experimento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/experiment/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"experiment",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6b08244aa2cb6f71ea5f5c96"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

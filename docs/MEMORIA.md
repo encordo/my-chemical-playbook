@@ -239,21 +239,16 @@ Las rutas exactas, códigos de estado y formatos de respuesta deben verificarse 
 
 ## 7. Testing
 
-El testing debe cubrir:
+Se realizan 4 tests a través del script puebasUnitarias.tests.js del directorio __tests__.
 
-- Registro de usuario válido.
-- Registro con datos inválidos o duplicados.
-- Comparación correcta de contraseñas.
-- Login correcto e incorrecto.
-- Rechazo de rutas protegidas sin JWT.
-- Rechazo de JWT caducado o inválido.
-- Acceso denegado a usuarios sin el rol requerido.
-- Creación, consulta, modificación y eliminación de experimentos.
-- Validación de esquemas.
-- Respuesta ante identificadores inexistentes o inválidos.
-- Comportamiento de la búsqueda con parámetros normales y maliciosos.
+Las pruebas son:
 
-Las pruebas pueden apoyarse en una base de datos aislada y datos preparados antes de cada ejecución.
+1. Rechazar una solicitud sin token.
+2. Asignar el usuario autenticado a la solicitud.
+3. Permitir el acceso a un administrador.
+4. Rechazar el acceso a un usuario que no es administrador.
+
+
 
 ## 8. Retos y soluciones
 

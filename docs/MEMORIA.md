@@ -248,7 +248,13 @@ Las pruebas son:
 3. Permitir el acceso a un administrador.
 4. Rechazar el acceso a un usuario que no es administrador.
 
+Para lanzar las pruebas
 
+```bash
+npm test                # modo watch
+npm run test:run        # una vez
+npm run test:coverage   # con cobertura
+```
 
 ## 8. Retos y soluciones
 

@@ -61,7 +61,7 @@ const login = async (req, res) => {
   }
 
   const user = await getUserByUsername(username);
-  // Mismo mensaje si no existe el email o si la contraseña falla: no damos pistas
+  // Mismo mensaje si no existe el usuario o si la contraseña falla: no damos pistas
   if (!user || !(await bcrypt.compare(password, user.password))) {
     throw new HttpError(401, "Credenciales incorrectas");
   }

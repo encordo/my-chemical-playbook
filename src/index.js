@@ -4,7 +4,6 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import router from "./routes/router.js";
 import connectDB from "./config/db.js";
-//import { swaggerUi, swaggerSpec } from "./config/swagger.js";
 import { notFound, errorHandler } from "./middlewares/error.middleware.js";
 
 const app = express();
@@ -16,9 +15,6 @@ app.use(express.json());
 app.use(cookieParser()); // rellena req.cookies
 
 app.use("/api", router);
-
-// Documentación interactiva de la API: http://localhost:3000/docs
-//app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Siempre después de las rutas, y en este orden:
 app.use(notFound); // ninguna ruta ha respondido → 404
